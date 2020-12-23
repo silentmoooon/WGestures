@@ -41,7 +41,10 @@ namespace WGestures.App.Gui.Windows
             _isEditingMode = true;
 
             _editingApp = editingApp;
-
+         string[] strs =   editingApp.ExecutablePath.Split('|');
+           foreach (String str in strs){
+                listBox1.Items.Add(str);
+            }
             Text = "修改 \"" + editingApp.Name + "\"";
             AppName = txtSelectedAppNae.Text = editingApp.Name;
             AppPath = lnkSelectedAppPath.Text = editingApp.ExecutablePath;
@@ -367,11 +370,12 @@ namespace WGestures.App.Gui.Windows
         private void HandleSelectedApp(string path, string appName)
         {
             groupSelectedApp.Visible = true;
-
+            if(!listBox1.Items.Contains(path))
+            listBox1.Items.Add(path);
             lnkSelectedAppPath.Text = path;
             toolTip1.SetToolTip(lnkSelectedAppPath, path);
             if (!_isEditingMode) txtSelectedAppNae.Text = appName;
-
+          
             LoadIcon(path);
             AppPath = path;
 
@@ -380,11 +384,15 @@ namespace WGestures.App.Gui.Windows
 
             if (_isEditingMode)
             {
-                if (path.Equals(_editingApp.ExecutablePath))
+                if (_editingApp.ExecutablePath.Contains(path))
+               // if (path.Equals(_editingApp.ExecutablePath))
                 {
                     flowAlert.Visible = false;
                     btnOk.Enabled = true;
                     return;
+                }else
+                {
+
                 }
             }
             else
@@ -439,6 +447,15 @@ namespace WGestures.App.Gui.Windows
         private void btnOk_Click(object sender, EventArgs e)
         {
             AppName = txtSelectedAppNae.Text;
+            String path = string.Empty;
+            String name = string.Empty;
+            for(int i = 0; i < listBox1.Items.Count; i++)
+            {
+                path += listBox1.Items[i] + "|";
+                name += Path.GetFileNameWithoutExtension((string)listBox1.Items[i]) + "|";
+            }
+            AppPath = path.Substring(0,path.Length-1);
+            AppName = name.Substring(0, name.Length - 1); ;
             DialogResult = DialogResult.OK;
 
             Close();
@@ -561,6 +578,20 @@ namespace WGestures.App.Gui.Windows
             txtSelectedAppNae.Focus();
         }
 
+        private void btn_RemoveGesture_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Remove(listBox1.SelectedItem);
+            if(listBox1.Items.Count==0)
+            {
+                btn_RemoveGesture.Enabled = false;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            btn_RemoveGesture.Enabled = true;
+        }
     }
 
 }

@@ -497,6 +497,7 @@ namespace WGestures.Core.Impl.Windows
                 case MouseMsg.WM_MOUSEWHEEL:
                     if (_captured)
                     {
+                         
                         //获得滚动方向
                         int delta = (short)(mouseData.mouseData >> 16);
                         var gestMod = delta > 0 ? GestureModifier.WheelForward : GestureModifier.WheelBackward;
@@ -784,17 +785,17 @@ namespace WGestures.Core.Impl.Windows
                 return false;
             }
 
-            if (modifier == (modifier & GestureModifier.Scroll))
-            {
-                //如果事件发生的间隔不到x毫秒，则不发布新事件
-                var now = DateTime.UtcNow;
-                if (now - _modifierEventHappendPrevTime > TimeSpan.FromMilliseconds(100))
-                {
-                    Post(WM.GESTBTN_MODIFIER, (int)modifier);
-                    _modifierEventHappendPrevTime = now;
-                }
-            }
-            else
+            //if (modifier == (modifier & GestureModifier.Scroll))
+            //{
+            //    //如果事件发生的间隔不到x毫秒，则不发布新事件
+            //    var now = DateTime.UtcNow;
+            //    if (now - _modifierEventHappendPrevTime > TimeSpan.FromMilliseconds(100))
+            //    {
+            //        Post(WM.GESTBTN_MODIFIER, (int)modifier);
+            //        _modifierEventHappendPrevTime = now;
+            //    }
+            //}
+            //else
             {
                 Post(WM.GESTBTN_MODIFIER, (int)modifier);
             }

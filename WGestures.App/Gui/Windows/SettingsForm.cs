@@ -311,20 +311,15 @@ namespace WGestures.App.Gui.Windows
                 if (result != DialogResult.OK) return;
 
                 var appPath = frm.AppPath;
-                ExeApp found;
+             
 
-                if (Controller.IntentStore.TryGetExeApp(appPath, out found))
-                {
-                    HighlightAppInList(found);
-                }
-                else
-                {
+               
                     var app = new OrderableExeApp() { ExecutablePath = appPath, Name = frm.AppName, Order = 1}; 
                     
                     AddAppToList(app);
                     HighlightAppInList(app);
                     Controller.IntentStore.Add(app);
-                }
+               
             }
         }
 
@@ -610,11 +605,11 @@ namespace WGestures.App.Gui.Windows
             item.ImageKey = appPath;
             if (!app.IsGesturingEnabled) item.ForeColor = Color.Firebrick;
 
-            if (!File.Exists(appPath))
-            {
-                item.Text += "(不存在)";
-                item.ForeColor = Color.Gray;
-            }
+            //if (!File.Exists(appPath))
+            //{
+            //    item.Text += "(不存在)";
+            //    item.ForeColor = Color.Gray;
+            //}
 
             listApps.Items.Add(item);
         }
@@ -641,19 +636,13 @@ namespace WGestures.App.Gui.Windows
 
                         sel.Text = found.Name;
 
-                        if (!found.AppExists()) sel.Text += "(不存在)";
+                       
 
                         //labelAppName.Text = sel.Text;
                     }
                     else
                     {
-                        ExeApp existed;
-                        if (Controller.IntentStore.TryGetExeApp(frm.AppPath, out existed))
-                        {
-                            HighlightAppInList(existed);
-                        }
-                        else
-                        {
+                        
                             RemoveSelectedAppFromList();
 
                             Controller.IntentStore.Remove(found.ExecutablePath);
@@ -664,7 +653,7 @@ namespace WGestures.App.Gui.Windows
                             Controller.IntentStore.Add(found);
 
                             AddAppToList(found);
-                        }
+                        
 
 
                     }

@@ -214,7 +214,17 @@ namespace WGestures.Core.Persistence.Impl
 
         public bool TryGetExeApp(string key, out ExeApp found)
         {
-            return Apps.TryGetValue(key.ToLower(), out found);
+            foreach (String item in Apps.Keys)
+            {
+                if (item.Contains(key.ToLower()))
+                {
+                    found = Apps[item];
+                    return true;
+                }
+            }
+            found = null;
+            return false;
+            //return Apps.TryGetValue(key.ToLower(), out found);
         }
 
         public ExeApp GetExeApp(string key)
