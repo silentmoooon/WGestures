@@ -422,18 +422,18 @@ namespace WGestures.App
                 }
             }
             //是否检查更新
-            if (!config.Get<bool?>(ConfigKeys.AutoCheckForUpdate).HasValue || config.Get<bool>(ConfigKeys.AutoCheckForUpdate))
-            {
-                var checkForUpdateTimer = new Timer { Interval = Constants.AutoCheckForUpdateInterval };
+            //if (!config.Get<bool?>(ConfigKeys.AutoCheckForUpdate).HasValue || config.Get<bool>(ConfigKeys.AutoCheckForUpdate))
+            //{
+            //    var checkForUpdateTimer = new Timer { Interval = Constants.AutoCheckForUpdateInterval };
 
-                checkForUpdateTimer.Tick += (sender, args) =>
-                {
-                    checkForUpdateTimer.Stop();
-                    ScheduledUpdateCheck(sender, trayIcon);
+            //    checkForUpdateTimer.Tick += (sender, args) =>
+            //    {
+            //        checkForUpdateTimer.Stop();
+            //        ScheduledUpdateCheck(sender, trayIcon);
 
-                };
-                checkForUpdateTimer.Start();
-            }
+            //    };
+            //    checkForUpdateTimer.Start();
+            //}
 
             UpdateTray();
         }

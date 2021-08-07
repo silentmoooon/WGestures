@@ -140,7 +140,7 @@ namespace Win32
         public static void ShowFileExtension(bool bShow)
         {
             //let error bubble up.
-            Shell32.SHELLSTATE state = new Shell32.SHELLSTATE();
+            SHELLSTATE state = new Shell32.SHELLSTATE();
             state.fShowExtensions = (uint)(bShow ? 1 : 0);
             Shell32.SHGetSetSettings(ref state, Shell32.SSF.SSF_SHOWEXTENSIONS, true);
         }
