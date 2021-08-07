@@ -9,7 +9,7 @@ WGestures鼠标手势 for Windows.
 
 by Ying Yuandong. 有问题请提issue或联系我: Ying@YingDev.com
 
-_______________________
+_______________________   
 ## 改进 WGestures...  
 ### 环境
 * Visual Studio 2013, .Net Framework 3.5 SDK
