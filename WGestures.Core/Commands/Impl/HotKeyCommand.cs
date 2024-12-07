@@ -151,9 +151,9 @@ namespace WGestures.Core.Commands.Impl
 
         private static bool IsWindowMinimized(IntPtr hwnd)
         {
-            int style = User32.GetWindowLong(hwnd, User32.GWL.GWL_STYLE);
+            long style = User32.GetWindowLong(hwnd, User32.GWL.GWL_STYLE);
 
-            return (int)User32.WS.WS_MINIMIZE == (style & (int)User32.WS.WS_MINIMIZE);
+            return (long)User32.WS.WS_MINIMIZE == (style & (long)User32.WS.WS_MINIMIZE);
         }
 
         private void PerformKey(uint pid, uint tid, VirtualKeyCode key, bool isUp = false)

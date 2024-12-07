@@ -19,7 +19,7 @@ namespace WGestures.Core
         public List<GestureDir> Dirs { get; set; }
         public GestureModifier Modifier { get; set; }
 
-
+        
         public Gesture(GestureTriggerButton gestureBtn = GestureTriggerButton.Right, int defaultCapacity=16)
         {
             GestureButton = gestureBtn;

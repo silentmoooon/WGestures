@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using IO;
+ 
+using Newtonsoft.Json;
 
 namespace NativeMultiFileArchiveLib
 {
@@ -686,7 +688,7 @@ namespace NativeMultiFileArchiveLib
         /// <returns></returns>
         public static byte[] ToByteArray(RawIndex indexData)
         {
-            return TinySerializer.Serialize(indexData, true);
+            return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(indexData));
         }
 
         /// <summary>
@@ -696,7 +698,7 @@ namespace NativeMultiFileArchiveLib
         /// <returns></returns>
         public static RawIndex FromByteArray(byte[] indexData)
         {
-            return TinySerializer.DeSerialize<RawIndex>(indexData, true);
+            return JsonConvert.DeserializeObject<RawIndex>(Encoding.UTF8.GetString(indexData));
         }
     }
 

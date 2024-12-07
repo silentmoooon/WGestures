@@ -21,12 +21,12 @@ namespace WGestures.Common.OsSpecific.Windows
         {
             get
             {
-                int exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
+                long exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
                 return (exStyle & WS_EX_NOACTIVATE) != 0;
             }
             set
             {
-                int exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
+                long exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
                 if (value)
                 {
                     exStyle |= WS_EX_NOACTIVATE;
@@ -50,10 +50,10 @@ namespace WGestures.Common.OsSpecific.Windows
             }
             set
             {
-                int style = User32.GetWindowLong(Handle, User32.GWL.GWL_STYLE);
+                long style = User32.GetWindowLong(Handle, User32.GWL.GWL_STYLE);
                 if (value)
                 {
-                    style |= (int)User32.WS.WS_VISIBLE;
+                    style |= (long)User32.WS.WS_VISIBLE | (long)User32.WS.WS_MINIMIZE;
                 }
                 else
                 {
@@ -70,13 +70,13 @@ namespace WGestures.Common.OsSpecific.Windows
         {
             get
             {
-                int exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
+                long exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
                 return (exStyle & WS_EX_TRANSPARENT) != 0;
             }
 
             set
             {
-                int exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
+                long exStyle = User32.GetWindowLong(Handle, User32.GWL.GWL_EXSTYLE);
 
                 if (value)
                 {

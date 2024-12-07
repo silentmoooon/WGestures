@@ -333,13 +333,13 @@ namespace Win32
        #region SetWindowLong
 //
         [DllImport(User32Dll, SetLastError = true)]
-        public static extern int GetWindowLong(IntPtr hWnd, GWL nIndex);
+        public static extern long GetWindowLong(IntPtr hWnd, GWL nIndex);
 
         [DllImport(User32Dll, SetLastError = true)]
-        public static extern int GetWindowLong(IntPtr hWnd, WS nIndex);
+        public static extern long GetWindowLong(IntPtr hWnd, WS nIndex);
 
         [DllImport(User32Dll)]
-        public extern static void SetWindowLong(IntPtr hwnd, GWL nIndex, int dwNewLong);
+        public extern static void SetWindowLong(IntPtr hwnd, GWL nIndex, long dwNewLong);
 
         [DllImport(User32Dll)]
         public extern static IntPtr SetWindowLong(IntPtr hwnd, GWL nIndex, IntPtr dwNewLong);

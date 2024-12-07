@@ -41,12 +41,13 @@ namespace WGestures.App
         static GlobalHotKeyManager hotkeyMgr;
         
         //for adding hotkey
-        static MenuItem menuItem_pause;
+        // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+                        static ToolStripMenuItem menuItem_pause;
 
         [STAThread]
         static void Main(string[] args)
         {
-            Debug.Listeners.Add(new DetailedConsoleListener());
+            System.Diagnostics.Trace.Listeners.Add(new DetailedConsoleListener());
 
             if (IsDuplicateInstance())
             {
@@ -608,18 +609,23 @@ namespace WGestures.App
             var notifyIcon = new NotifyIcon();
             notifyIcon.Text = Application.ProductName +" "+ Application.ProductVersion + " by YingDev.com";
 
-            var contextMenu1 = new ContextMenu();
+            // TODO 不再支持 ContextMenu。请改用 ContextMenuStrip。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            var contextMenu1 = new ContextMenuStrip();
 
-            var menuItem_exit = new MenuItem() { Text = "退出" };
+            // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            var menuItem_exit = new ToolStripMenuItem() { Text = "退出" };
             menuItem_exit.Click += menuItem_exit_Click;
 
-            menuItem_pause = new MenuItem() { Text = "暂停" };
+            // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            menuItem_pause = new ToolStripMenuItem() { Text = "暂停" };
             menuItem_pause.Click += menuItem_pause_Click;
 
-            var menuItem_settings = new MenuItem() { Text = "设置" };
+            // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            var menuItem_settings = new ToolStripMenuItem() { Text = "设置" };
             menuItem_settings.Click += menuItem_settings_Click;
 
-            var menuItem_showQuickStart = new MenuItem() { Text = "快速入门" };
+            // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            var menuItem_showQuickStart = new ToolStripMenuItem() { Text = "快速入门" };
             menuItem_showQuickStart.Click += (sender, args) => ShowQuickStartGuide();
 
             /*var menuItem_toggleTray = new MenuItem() { Text = "隐藏 (Shift + 左键 + 中键)" };
@@ -628,10 +634,13 @@ namespace WGestures.App
                ToggleTrayIconVisibility();
             };*/
 
-            contextMenu1.MenuItems.AddRange(new[] { /*menuItem_toggleTray, */menuItem_pause, new MenuItem("-"), menuItem_settings,  menuItem_showQuickStart,new MenuItem("-"), menuItem_exit });
+            // TODO 不再支持 MenuItem。请改用 ToolStripMenuItem。有关更多详细信息，请参阅 https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls。
+            
+                        contextMenu1.Items.AddRange(new[] { /*menuItem_toggleTray, */menuItem_pause, new ToolStripMenuItem("-"), menuItem_settings,  menuItem_showQuickStart,new ToolStripMenuItem("-"), menuItem_exit });
             notifyIcon.Icon = Resources.trayIcon;
             //notifyIcon.Text = Application.ProductName;
-            notifyIcon.ContextMenu = contextMenu1;
+            notifyIcon.ContextMenuStrip = contextMenu1;
+            //notifyIcon.ContextMenu = contextMenu1;
             notifyIcon.Visible = true;
             
             //todo: move out

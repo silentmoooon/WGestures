@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
-using IO;
+using System.Text;
+ 
+using Newtonsoft.Json;
 
 namespace NativeMultiFileArchiveLib
 {
@@ -106,7 +108,7 @@ namespace NativeMultiFileArchiveLib
         /// <returns></returns>
         public byte[] ToByteArray()
         {
-            return TinySerializer.SerializeCompressed(this, true);
+            return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this));
         }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace NativeMultiFileArchiveLib
         /// <returns></returns>
         public static ArchiveFile FromByteArray(byte[] data)
         {
-            return TinySerializer.DeSerializeCompressed<ArchiveFile>(data, true);
+            return JsonConvert.DeserializeObject<ArchiveFile>(Encoding.UTF8.GetString(data));
         }
 
         #region Overrides

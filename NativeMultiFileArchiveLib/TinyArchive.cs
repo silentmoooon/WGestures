@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using General.Hierarchy;
+using Newtonsoft.Json;
+
 
 namespace NativeMultiFileArchiveLib
 {
@@ -132,9 +134,12 @@ namespace NativeMultiFileArchiveLib
             FileName = archiveFileName;
 
             // save as:
-            using (FileStream fs = File.Create(archiveFileName))
+            using (StreamWriter sw = new StreamWriter(archiveFileName))
+            using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                IO.TinySerializer.Serialize(fs, this, false);
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(writer, this);
+               
             }
         }
 
@@ -145,9 +150,12 @@ namespace NativeMultiFileArchiveLib
         /// <returns></returns>
         public static TinyFileArchive Open(String archiveFileName)
         {
-            using (FileStream fs = File.Open(archiveFileName, FileMode.Open))
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamReader file = File.OpenText(archiveFileName))
+            using (JsonReader jsonReader = new JsonTextReader(file))
             {
-                return IO.TinySerializer.DeSerialize<TinyFileArchive>(fs, false);
+              return  serializer.Deserialize<TinyFileArchive>(jsonReader);
+                 
             }
         }
 
