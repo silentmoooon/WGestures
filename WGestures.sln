@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGestures.Common", "WGestur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGestures.Core", "WGestures.Core\WGestures.Core.csproj", "{F26BE916-F318-47B5-87EB-1D67B7F30FDC}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WGestures.Install", "WGestures.Install\WGestures.Install.wixproj", "{498235F9-BC32-41C7-8F27-9ED92255C08E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGestures.View", "WGestures.View\WGestures.View.csproj", "{62FB7A5C-E917-4405-942C-677A265685D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{2283FEDE-3BE7-4E4F-9885-C07036363485}"
@@ -24,6 +22,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{FE1C7035-9E20-422A-98AA-690D40132633}"
 	ProjectSection(SolutionItems) = preProject
 		YingDevSPC.pfx = YingDevSPC.pfx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGInstall", "WGInstall\WGInstall.csproj", "{44555887-C439-470C-944D-8866EC3D7067}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A575D72F-3D76-46B0-933C-66C9D9CEC1CB} = {A575D72F-3D76-46B0-933C-66C9D9CEC1CB}
 	EndProjectSection
 EndProject
 Global
